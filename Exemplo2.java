@@ -36,5 +36,35 @@ class Exemplo2 {
 		} else {
 			System.out.printf("%s, você deve passar no teste pscicológico\n", nome);
 		}
+		
+		// exemplo para escrever o dia da semana
+		int diaDaSemana = 8;
+		
+		switch(diaDaSemana) {
+			case 0:
+				System.out.printf("Domingo\n");
+				break;
+			case 1:
+				System.out.printf("Segunda-feira\n");
+				break;
+			case 2: 
+				System.out.printf("Terça-feira\n");
+				break;
+			case 3:
+				System.out.printf("Quarta-feira\n");
+				break;
+			case 4:
+				System.out.printf("Quinta-feira\n");
+				break;
+			case 5: 
+				System.out.printf("Sexta-feira\n");
+				break;
+			case 6:
+				System.out.printf("Sábado\n");
+				break;
+			default: 
+				System.out.printf("Dia inválido\n");
+		}
+		
 	}
 }

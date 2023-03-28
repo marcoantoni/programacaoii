@@ -7,7 +7,14 @@ public class Exemplo1 {
 		char sexo = 'i';	// variavel para armazenar uma letra
 		float altura = 1.91f; // varivel para armazenar ponto flutuando - obrigatório colocar o f
 		
+		// exemplo de concatenacao de string
+		String sobrenome = " da Silva";
+		String nomeCompleto = nome + sobrenome;
+	
+		
+		
 		System.out.printf("Nome: %s \n", nome); // %s para mostrar uma string
+		System.out.printf("Nome completo: %s \n", nomeCompleto);
 		System.out.printf("Idade: %d \n", idade); // %d para mostrar um inteiro
 		System.out.printf("Altura: %.2f \n", altura); // %f mostrar numero com virgula
 		
