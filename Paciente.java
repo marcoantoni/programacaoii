@@ -7,14 +7,40 @@ class Paciente {
 	String cpf;
 	
 	// criacao do método para cadastrar o paciente
-	public void cadastrarPaciente(String nome, String nascimento, String fone, String cpf){
+	public Paciente(String nome, String nascimento, String fone, String cpf){
 		// referencia this serve para resolver a ambiguidade de nomes de parametros e atributos
 		// a ambiguidade ocorre quando eles tem o MESMO nome
 		// 1º refere-se ao atributo = 2º refere-se ao parametro
-		this.nome = nome;
-		this.nascimento = nascimento;
-		this.fone = fone;
-		this.cpf = cpf;
+		
+		// validando o nome	
+		if (nome.length() >= 3) {
+			this.nome = nome;
+		} else {
+			System.out.printf("Preencha corretamente o nome do paciente");
+			this.nome = "";
+		}
+		
+		// validação da data (exemplo será melhorado nas próximas aula
+		if (nascimento.length() == 10) {
+			this.nascimento = nascimento;
+		} else {
+		 System.out.printf("Preencha corretamente a data de nascimento, usando o padrao dd/mm/aaaa \n");
+		 this.nascimento = "";
+		}
+		
+		if (fone.length() == 8 || (fone.length() >= 9 && fone.length() <= 14) ) {
+			this.fone = fone;
+		} else { 
+			System.out.printf("Número inválido\n");
+		}
+		
+		if (cpf.length() == 14) {
+			this.cpf = cpf;
+		} else {
+			System.out.printf("Insira o CPF no formato xxx.yyy.zzz-dd \n");
+			this.cpf = "";
+		}
+			
 	}
 	
 	// método para printar os dados na tela
@@ -28,24 +54,18 @@ class Paciente {
 	// método principal do programa
 	public static void main (String args[]) {
 		// criacao de uma instancia da classe paciente
-		Paciente paciente1 = new Paciente();	// new é o comando responsável por fazer isso
+		Paciente paciente1 = new Paciente("Fe", "20/05/2006", "51 9 9812 1234", "123.456.789-10");	// new é o comando responsável por fazer isso
 		
-		// chamando o método cadastrarPaciente, passando os dados como pametro
-		paciente1.cadastrarPaciente("Fernanda", "20/05/2006", "51 9 9812 1234", "123.456.789-10");
-				
+			
 		// chamando o método mostrarDados
 		paciente1.mostrarDados();
 		
-		Paciente paciente2 = new Paciente();
-		
-		paciente2.cadastrarPaciente("Julius", "06/07/2002", "", "987.654.321-19");
-		
+		Paciente paciente2 = new Paciente("Julius", "06/07/2002", "", "987.654.321-19");
+				
 		paciente2.mostrarDados();
 		
-		Paciente paciente3 = new Paciente();
-		
-		paciente3.cadastrarPaciente("Douglas", "21/06/1990", "098.876.543-78", "(48) 9 9128 7917");
-		
+		Paciente paciente3 = new Paciente("Douglas", "21/06/1990", "098.876.543-78", "(48) 9 9128 7917");
+				
 		paciente3.mostrarDados();
 	}
 	
