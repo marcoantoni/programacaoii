@@ -11,6 +11,7 @@ class FichaTecnica {
 	float tanque; // capacidade do tanque
 	boolean cambioAT; // true - automatico / false - manual
 	int nMarchas;
+	// atributos para armazenar a autonomia do veiculo
 	float autCidade;
 	float autEstrada;
 
@@ -21,6 +22,7 @@ class FichaTecnica {
 			this.modelo = modelo; 
 		} else {
 			System.out.println("Marca ou modelo inválido\n");
+			this.modelo = "";	// definindo um valor vazio para a string que não foi preenchida. "" não é a mesma coisa que null
 		}
 		
 		// validacao do ano
@@ -28,6 +30,8 @@ class FichaTecnica {
 			this.ano = ano;
 		} else {
 			System.out.println("Ano inválido \n");
+			// em atributos do tipo int, o valor padrão de inicialização do atributo é 0, ou seja, mesmo que não tenha a linha
+			// this.ano = 0, o valor será igual a 0
 		}
 		
 		// combustivel aceitos: alcool / etanol, gasolina, diesel, elétrico, hibrido
@@ -36,6 +40,7 @@ class FichaTecnica {
 			combustivel.equalsIgnoreCase("elétrico") || combustivel.equalsIgnoreCase("hibrido") ){
 				this.combustivel = combustivel;
 			} else {
+				this.combustivel = "Gasolina";
 				System.out.println("Combustível inválido\n");
 			}
 		
@@ -44,6 +49,7 @@ class FichaTecnica {
 			this.motor = motor;
 		} else {
 			System.out.println("Motor inválido \n");
+			this.motor = "";
 		}
 		
 		// potencia sempre será maior que zero
@@ -66,6 +72,8 @@ class FichaTecnica {
 			this.temp0a100 = temp0a100;
 		} else {
 			System.out.println("Tempo de 0 a 100 inválido\n");
+			// em atributos do tipo float, o valor padrão de inicialização do atributo é 0.0, ou seja, mesmo que não tenha a linha
+			// this.temp0a100 = 0.0, o valor será igual a 0.0
 		}
 		
 		if (consumoCidade > 0){
@@ -95,18 +103,39 @@ class FichaTecnica {
 		} else {
 			System.out.println("Número de marchas inválido para o veículo \n");
 		}
+		
+		// calculando a autonomia do veiculo
+		autCidade = consumoCidade * tanque;
+		autEstrada = consumoEstrada * tanque;
 	}
 	
 	public void imprimirInformacoes(){
-		System.out.printf("Marca/modelo: %s \n", modelo);
-		System.out.printf("Ano de fabricação: %d \n", ano);
-		System.out.printf("Combustível: %s \n", combustivel);
-		System.out.printf("Motor: %s \n", motor);
-		System.out.printf("Potência: %d \n", potencia);
-		System.out.printf("Velocidade máxima: %d \n", vMax);
-		System.out.printf("Tempo de 0 a 100: %.2f \n", temp0a100);
-		System.out.printf("Consumo de combustível na cidade: %.2f \n", consumoCidade);
-		System.out.printf("Consumo de combustível na estrada: %.2f \n", consumoEstrada);
+		if (modelo != "")
+			System.out.printf("Marca/modelo: %s \n", modelo);
+		
+		if (ano != 0)
+			System.out.printf("Ano de fabricação: %d \n", ano);
+		
+		if (combustivel != "")
+			System.out.printf("Combustível: %s \n", combustivel);
+		
+		if (motor != "")
+			System.out.printf("Motor: %s \n", motor);
+		
+		if (potencia != 0)
+			System.out.printf("Potência: %d \n", potencia);
+		
+		if (vMax != 0)
+			System.out.printf("Velocidade máxima: %d \n", vMax);
+		
+		if (temp0a100 != 0)
+			System.out.printf("Tempo de 0 a 100: %.2f \n", temp0a100);
+		
+		if (autCidade != 0)
+			System.out.printf("Consumo de combustível na cidade: %.2f - Autonomia de %.2f km \n", consumoCidade, autCidade);
+		
+		if (autEstrada != 0)
+			System.out.printf("Consumo de combustível na estrada: %.2f - Autonomia de %.2f km \n", consumoEstrada, autEstrada);
 		
 		// para exibir o cambio é necessário testar o conteudo da variavel cambioAT
 		// definimos que se for igual a true, o cambio é automático
@@ -127,8 +156,8 @@ class FichaTecnica {
 		 * float temp0a100, float consumoCidade, float consumoEstrada, float tanque, boolean cambioAT, int nMarchas)
 		 */
 		
-		FichaTecnica veic1 = new FichaTecnica("Volkswagen Polo 200 TSI Highline", 2022, 
-			"Gasolina", "1.0 turbo", 116, 192, 9.6f, 11.4f, 13.9f, 52, true, 6);
+		FichaTecnica veic1 = new FichaTecnica("Volkswagen Polo 200 TSI Highline", 1940, 
+			"", "1.0 turbo", 0, 192, 9.6f, 0f, 13.9f, 52, true, 6);
 			
 		veic1.imprimirInformacoes();	// chama o método responsável por printar as informacoes
 	}
